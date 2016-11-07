@@ -14,3 +14,8 @@ class Value:
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __hash__(self):
+        """Override the hashing method to hash state & behavior
+        """
+        return hash(tuple(sorted(self.__dict__.items())))

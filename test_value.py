@@ -62,6 +62,9 @@ def value_object_int_inheritance():
     obj = ValueIntInheritance(18)
     return obj
 
+# Equality method
+
+
 def test_equality_string_objs(value_object_string1, value_object_string1bis):
     assert value_object_string1 == value_object_string1bis
 
@@ -79,5 +82,10 @@ def test_equality_dif_params(value_object_int, value_object_int2):
 
 
 def test_equalitiy_inheritance(value_object_int, value_object_int_inheritance):
-    print("pi2\n")
     assert value_object_int != value_object_int_inheritance
+
+# Hashing method
+
+
+def test_hash(value_object_string1, value_object_string1bis):
+    assert len(set([value_object_string1, value_object_string1bis])) == 1
