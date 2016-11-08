@@ -1,7 +1,7 @@
 class Value:
 
     def __init__(self, p):
-            self.param = p
+            pass
 
     def __eq__(self, other):
         """Override the equality method to compare state (values) and
@@ -18,4 +18,4 @@ class Value:
     def __hash__(self):
         """Override the hashing method to hash state & behavior
         """
-        return hash(tuple(sorted(self.__dict__.items())))
+        return hash(tuple([self.__class__.__name__, tuple(sorted(self.__dict__.items()))]))

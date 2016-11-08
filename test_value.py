@@ -88,4 +88,8 @@ def test_equalitiy_inheritance(value_object_int, value_object_int_inheritance):
 
 
 def test_hash(value_object_string1, value_object_string1bis):
-    assert len(set([value_object_string1, value_object_string1bis])) == 1
+    assert hash(value_object_string1) == hash(value_object_string1bis)
+
+
+def test_hash_diff_class(value_object_string1, value_object_other_string):
+    assert hash(value_object_string1) != hash(value_object_other_string)
