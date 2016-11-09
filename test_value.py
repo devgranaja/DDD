@@ -21,6 +21,16 @@ class ValueIntInheritance(ValueInt):
     pass
 
 
+class InmutableValueObject(Value):
+
+    def __init__(self, var):
+        self._myvariable = var
+
+    @property
+    def myvariable(self):
+        return self._myvariable
+
+
 @pytest.fixture
 def value_object_string1():
     obj = ValueString("value1")
