@@ -1,23 +1,17 @@
-import uuid
-
 
 # ======================================================================================================================
 # Entities
 #
 
-class Entity:
+class Entity(object):
     """The base class of all entities.
 
     Attributes:
         id: A unique identifier.
     """
 
-    def __init__(self):
-        """Initialize a Entity.
-
-        Do NOT call directly. Use the factory method.
-        """
-        pass
+    def __init__(self, id):
+        self._id = id
 
     def __eq__(self, ent):
         return self._id == ent.id
@@ -27,9 +21,20 @@ class Entity:
         """A string unique identifier for the entity."""
         return self._id
 
+
+# ======================================================================================================================
+# Factories
+#
+class EntityFactory:
+    factories = {}
+
     @staticmethod
-    def factory():
-        """Factory method."""
-        obj = Entity()
-        obj._id = uuid.uuid4().hex
-        return obj
+    def addFactory(id, entityFactory):
+        EntityFactory.factories[id] = entityFactory
+
+    @staticmethod
+    def createEntity(id):
+        """A Template Method"""
+        if id not in EntityFactory.factories:
+            EntityFactory.factories[id] = eval(id + '.Factory()')
+        return EntityFactory.factories[id].create()
