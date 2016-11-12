@@ -1,11 +1,10 @@
 
+
 # ======================================================================================================================
 # Entities
 #
-
 class Entity(object):
     """The base class of all entities.
-
     Attributes:
         id: A unique identifier.
     """
@@ -29,12 +28,14 @@ class EntityFactory:
     factories = {}
 
     @staticmethod
-    def addFactory(id, entityFactory):
-        EntityFactory.factories[id] = entityFactory
+    def add_factory(entity, entity_factory):
+        entity_name = entity.__name__
+        EntityFactory.factories[entity_name] = entity_factory
 
     @staticmethod
-    def createEntity(id):
+    def create_entity(entity):
         """A Template Method"""
-        if id not in EntityFactory.factories:
-            EntityFactory.factories[id] = eval(id + '.Factory()')
-        return EntityFactory.factories[id].create()
+        entity_name = entity.__name__
+        if entity_name not in EntityFactory.factories:
+            EntityFactory.factories[entity_name] = eval(entity_name + '.Factory()')
+        return EntityFactory.factories[entity_name].create()
