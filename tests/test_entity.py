@@ -23,16 +23,6 @@ class EntityTest2(Entity):
             return EntityTest2(UniqueId.id())
 
 
-class EntityTest3(Entity):
-    def __init__(self, id):
-        super().__init__(id)
-
-    class Factory:
-        @staticmethod
-        def create():
-            return EntityTest3(UniqueId.id())
-
-
 @pytest.fixture
 def entity_test1():
     EntityFactory.add_factory(EntityTest1, EntityTest1.Factory)
@@ -51,13 +41,6 @@ def entity_test1bis():
 def entity_test2():
     EntityFactory.add_factory(EntityTest2, EntityTest2.Factory)
     obj = EntityFactory.create_entity(EntityTest2)
-    return obj
-
-
-@pytest.fixture
-def entity_test3():
-    EntityFactory.add_factory(EntityTest3, EntityTest3.Factory)
-    obj = EntityFactory.create_entity(EntityTest3)
     return obj
 
 

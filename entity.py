@@ -10,6 +10,10 @@ class Entity(object):
     """
 
     def __init__(self, id):
+        """Initialize a Entity.
+
+        Do NOT call directly. Use the factory class.
+        """
         self._id = id
 
     def __eq__(self, ent):
